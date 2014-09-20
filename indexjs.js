@@ -12,14 +12,15 @@ function send(){
 	 document.getElementById("oldThemes").style.backgroundColor='green';
 	 document.getElementById("newThemes").style.backgroundColor='green';
 
-	 sendToServer(JSON.stringify(oldThemeArray),JSON.stringify(newThemeArray));
+	 var togetherArray = [oldThemeArray,newThemeArray];
+	 sendToServer(JSON.stringify(togetherArray));
 	 
 	 alert("Old Themes: " + oldThemeArray + " || " + "New Themes" + newThemeArray);
 	 
 	 
 	 }
 	 
-function sendToServer(oldThemeArrayPar, newThemeArrayPar) {
+function sendToServer(arrayPar) {
 
   if ("WebSocket" in window)
   {
@@ -29,8 +30,7 @@ function sendToServer(oldThemeArrayPar, newThemeArrayPar) {
      ws.onopen = function()
      {
         // Web Socket is connected, send data using send()
-        ws.send(oldThemeArrayPar);
-		ws.send(newThemeArrayPar);
+        ws.send(arrayPar);
         alert("Message is sent...");
      };
      ws.onmessage = function (evt) 
