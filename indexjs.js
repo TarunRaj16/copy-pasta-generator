@@ -20,39 +20,45 @@ function send(){
 	 
 	 }
 	 
-function sendToServer(arrayPar) {
+	 
+function startServerConnection() {
 
-  if ("WebSocket" in window)
-  {
-     alert("WebSocket is supported by your Browser!");
-     // Let us open a web socket
-     var ws = new WebSocket("ws://localhost:3001/");
-     ws.onopen = function()
-     {
-        // Web Socket is connected, send data using send()
-        ws.send(arrayPar);
-        alert("Message is sent...");
-     };
-     ws.onmessage = function (evt) 
+	if("WebSocket" in window) {
+	
+	
+		alert("Connecting to Server");
+		var ws = new WebSocket("ws://localhost:3001/");
+		
+	ws.onmessage = function (evt) 
      { 
         var received_msg = evt.data;
         alert("Message is received...");
      };
-     ws.onclose = function()
-     { 
-        // websocket is closed.
-        alert("Connection is closed..."); 
-     };
-  }
-  else
-  {
-     // The browser doesn't support WebSocket
-     alert("WebSocket NOT supported by your Browser!");
-  }
-  
-  
-	 document.getElementById("oldThemes").style.backgroundColor='white';
-	 document.getElementById("newThemes").style.backgroundColor='white';
+
+	} else {
+	
+	alert("WebSockets is not supported");
+	
+	}
+
 
 }
+
+function sendToServer(arrayPar){
+
+	if("WebSocket" in window) {
+	
+		var ws = new WebSocket("ws://localhost:3001/");
+		ws.send(arrayPar);
+        alert("Message is sent...");
+		
+	} else {
+	
+	alert("WebSockets is not supported");
+	
+	}
+
+}
+
+	 
 
