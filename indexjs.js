@@ -1,7 +1,7 @@
 	 
-var ws = new WebSocket(ws://localhost:3001/); 
+var ws = new WebSocket("ws://localhost:3001/"); 
 
-function init() { 
+function init(){ 
 
 
 	if("WebSocket" in window) {
