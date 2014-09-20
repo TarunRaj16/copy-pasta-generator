@@ -1,14 +1,15 @@
 #!/usr/bin/env python
-
+from nltk import Text
+import nltk
 from nltk.tokenize.punkt import PunktWordTokenizer
 import Theme
 
 class Parser:
-    def __init__(self, text, old_theme_words, new_theme_words):
+    def __init__(self, corpus, old_theme_words, new_theme_words):
         """Initialize parser"""
-        self._old_theme = Theme.Theme(text, old_theme_words)
-        self._new_theme = Theme.Theme(text, new_theme_words)
-
+        self._old_theme = Theme.Theme(Text(word.lower() for word in corpus.words()), old_theme_words)
+        self._new_theme = Theme.Theme(Text(word.lower() for word in corpus.words()), new_theme_words)
+        
     def replace_indices(self, indices, text):
         """Replace the indices of the tokenized text"""
         text_tokens = PunktWordTokenizer().tokenize(text)
@@ -24,6 +25,6 @@ class Parser:
                                                                                     pos_tags[ii][1]),
                                                             )
 
-        return result
+        return " ".join(text_tokens)
 
     
