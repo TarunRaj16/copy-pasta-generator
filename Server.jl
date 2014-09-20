@@ -12,6 +12,7 @@ while true
         try
             while true
                 line = readline(conn)
+                println(line)
                 write(conn, join([CopyPasta.generate_copy_pasta(line), "\n"]))
                 println("Written.")
             end
@@ -20,5 +21,18 @@ while true
         end
     end
 end
+
+## using HttpServer
+## using WebSockets
+
+## wsh = WebSocketHandler() do req,client
+##     while true
+##         msg = read(client)
+##         write(client, msg)
+##     end
+##   end
+
+## server = Server(wsh)
+## run(server, 3001)
 
 ## main()

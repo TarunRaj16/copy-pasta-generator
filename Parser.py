@@ -18,6 +18,7 @@ class Parser:
         text_tokens = PunktWordTokenizer().tokenize(text)
         pos_tags = nltk.pos_tag(text_tokens)
         print(len(pos_tags))
+        print(pos_tags)
         print(len(text_tokens))
 
         # result = [token.replace(filter(str.isalnum, token), )]
@@ -25,14 +26,13 @@ class Parser:
         
         for index in indices:
             try:
-                text_tokens[index] = text_tokens[index].replace(filter(str.isalnum, text_tokens[index]),
-                                                                self._old_theme.replace(self._new_theme,
-                                                                                        filter(str.isalnum,
-                                                                                               text_tokens[index]),
-                                                                                        pos_tags[index][1]),
+                stripped_word = filter(str.isalnum, text_tokens[index])
+                text_tokens[index] = text_tokens[index].replace(stripped_word,
+                                                                self._old_theme.replace(self._new_theme,stripped_word, pos_tags[index][1]),
                                                                 )
-        except IndexError:
-            continue
+            except IndexError as detail:
+                print("Index error with {}, {}".format(text_tokens[index], detail))
+                continue
             
         return " ".join(text_tokens)
 
