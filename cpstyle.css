@@ -1,0 +1,19 @@
+body { 
+	
+    background-image: url("assets/background.png");
+	text-align: center;
+	color: white;
+	font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+}
+h1{ 
+    color: white;
+	text-align: center;
+	font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+
+}
+
+h3{
+color: white;
+	text-align: center;
+	font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+}

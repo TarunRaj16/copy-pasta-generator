@@ -13,9 +13,9 @@ function send(){
 	 document.getElementById("newThemes").style.backgroundColor='green';
 
 	 var togetherArray = [oldThemeArray,newThemeArray];
-	 sendToServer(JSON.stringify(togetherArray));
-	 
-	 alert("Old Themes: " + oldThemeArray + " || " + "New Themes" + newThemeArray);
+	 var jsonstring = JSON.stringify(togetherArray);
+	 alert("JSON STRING: " + jsonstring);
+	 sendToServer(jsonstring);
 	 
 	 
 	 }
@@ -49,6 +49,10 @@ function sendToServer(arrayPar) {
      // The browser doesn't support WebSocket
      alert("WebSocket NOT supported by your Browser!");
   }
+  
+  
+	 document.getElementById("oldThemes").style.backgroundColor='white';
+	 document.getElementById("newThemes").style.backgroundColor='white';
 
 }
 
