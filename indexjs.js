@@ -23,16 +23,16 @@ function init(){
 }  
  
  function onOpen(evt) { 
-	alert("CONNECTED"); 
+	// alert("CONNECTED"); 
  } 
  
  function onMessage(evt) { 
-	alert("Receiving Message"); 
+	// alert("Receiving Message"); 
  }  
   
  function sendToServer(message) { 
  
-	alert("Sending Message");
+	// alert("Sending Message");
 	ws.send(message); 
  
  }  
@@ -53,7 +53,7 @@ function send(){
 
 	 var togetherArray = [oldThemeArray,newThemeArray];
 	 var jsonstring = JSON.stringify(togetherArray);
-	 alert("JSON STRING: " + jsonstring);
+	 // alert("JSON STRING: " + jsonstring);
 	 sendToServer(jsonstring);
 	 
 	 
