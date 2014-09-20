@@ -20,45 +20,45 @@ function send(){
 	 
 	 }
 	 
-	 
-function startServerConnection() {
 
-	if("WebSocket" in window) {
-	
-	
-		alert("Connecting to Server");
-		var ws = new WebSocket("ws://localhost:3001/");
-		
-	ws.onmessage = function (evt) 
-     { 
-        var received_msg = evt.data;
-        alert("Message is received...");
-     };
+var wsUri = "ws://localhost:3001/"; 
+var output;  
+var websocket;
 
-	} else {
-	
-	alert("WebSockets is not supported");
-	
-	}
+function init() { 
 
+testWebSocket(); 
 
-}
+}  
 
-function sendToServer(arrayPar){
+function testWebSocket() { 
 
-	if("WebSocket" in window) {
-	
-		var ws = new WebSocket("ws://localhost:3001/");
-		ws.send(arrayPar);
-        alert("Message is sent...");
-		
-	} else {
-	
-	alert("WebSockets is not supported");
-	
-	}
+websocket = new WebSocket(wsUri); 
+websocket.onopen = function(evt) { onOpen(evt) }; 
+websocket.onclose = function(evt) { onClose(evt) };
+websocket.onmessage = function(evt) { onMessage(evt) }; 
+websocket.onerror = function(evt) { onError(evt) }; 
+ 
+}  
+ 
+ function onOpen(evt) { 
+alert("CONNECTED"); 
+ sendToServer("WebSocket rocks"); } 
 
-}
+ function onClose(evt) { 
+ alert("DISCONNECTED"); }  
+ 
+ function onMessage(evt) { 
+ 
+ alert('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>'); 
+ websocket.close(); 
+ }  
+ 
+ function onError(evt) { alert('<span style="color: red;">ERROR:</span> ' + evt.data); }  
+ 
+ function sendToServer(message) { writeToScreen("SENT: " + message);  websocket.send(message); }  
+ 
+
 
 	 
 
