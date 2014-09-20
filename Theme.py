@@ -41,21 +41,26 @@ class Theme():
         return("not found")
 
     def replace(self, new_theme, to_replace, pos):
-        print("Replacing {0} which is a {1}".format(to_replace, pos))
-        return new_theme.access(self.distance(to_replace), 50, new_theme, to_replace, pos)
+    	print("Replacing {0} which is a {1}".format(to_replace, pos))
+        if self.distance(to_replace) == -1:
+            _new_list = self._corpus.similar_words(to_replace, 50)
+            for wrd in _new_list:
+                if find_pos(wrd) == pos:
+                    return wrd
+        return new_theme.access(self.distance(to_replace), 25, new_theme, to_replace, pos)
                 
 
-##def main():
-##    textG = nltk.Text(word.lower() for word in nltk.corpus.brown.words())
-##    stuff = ["door"]
-##    pi = Theme(textG, stuff)
-##    
+def main():
+    textG = nltk.Text(word.lower() for word in nltk.corpus.brown.words())
+    stuff = ["frozen"]
+    pi = Theme(textG, stuff)
+    
 ##    print(nltk.pos_tag(stuff)[0][1])
-##    for list1 in pi._similar_word_lists:
-##        for word in list1:
-##            print(word)
-##
-##if __name__=="__main__":
-##    main()
+    for list1 in pi._similar_word_lists:
+        for word in list1:
+            print(word)
+
+if __name__=="__main__":
+    main()
    
 
