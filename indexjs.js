@@ -23,39 +23,37 @@ function send(){
 
 var wsUri = "ws://localhost:3001/"; 
 var output;  
-var websocket;
 
 function init() { 
 
-testWebSocket(); 
+	ws = new WebSocket(ws://localhost:3001/); 
 
-}  
+	if("WebSocket" in window) {
+            ws.onopen = function (event) {
+					onOpen(event);
+            }
 
-function testWebSocket() { 
-
-websocket = new WebSocket(wsUri); 
-websocket.onopen = function(evt) { onOpen(evt) }; 
-websocket.onclose = function(evt) { onClose(evt) };
-websocket.onmessage = function(evt) { onMessage(evt) }; 
-websocket.onerror = function(evt) { onError(evt) }; 
+            ws.onmessage = function (message) {
+                onMessage(message);    
+            }
+        }
  
 }  
  
  function onOpen(evt) { 
- alert("CONNECTED"); } 
-
- function onClose(evt) { 
- alert("DISCONNECTED"); }  
+	alert("CONNECTED"); 
+ } 
  
  function onMessage(evt) { 
- 
- alert('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>'); 
- websocket.close(); 
+	alert("Receiving Message"); 
  }  
+  
+ function sendToServer(message) { 
  
- function onError(evt) { alert('<span style="color: red;">ERROR:</span> ' + evt.data); }  
+	alert("Sending Message");
+	ws.send(message); 
  
- function sendToServer(message) { writeToScreen("SENT: " + message);  websocket.send(message); }  
+ }  
  
 
 
