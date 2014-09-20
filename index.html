@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<title>Copy Pasta Generator </title>
+</head>
+<body>
+<h1>Copy Pasta Generator</h1>
+<input type="text" value="Enter your theme" id="input-txt"> <input type="Button" value="Submit" onClick="send()"/> 
+</body>
+
+<script type="text/javascript">
+
+function send(){
+
+	 alert("submitted");
+	var inputTheme = document.getElementById("input-txt").value;
+	 document.getElementById("input-txt").style.backgroundColor='green';
+	 
+	 sendToServer(inputTheme);
+	 }
+	 
+function sendToServer(inputThemePar) {
+
+  if ("WebSocket" in window)
+  {
+     alert("WebSocket is supported by your Browser!");
+     // Let us open a web socket
+     var ws = new WebSocket("ws://localhost:3001/echo");
+     ws.onopen = function()
+     {
+        // Web Socket is connected, send data using send()
+        ws.send(inputTheme);
+        alert("Message is sent...");
+     };
+     ws.onmessage = function (evt) 
+     { 
+        var received_msg = evt.data;
+        alert("Message is received...");
+     };
+     ws.onclose = function()
+     { 
+        // websocket is closed.
+        alert("Connection is closed..."); 
+     };
+  }
+  else
+  {
+     // The browser doesn't support WebSocket
+     alert("WebSocket NOT supported by your Browser!");
+  }
+
+}
+</script>
+
+
+
+
+
+</html>
