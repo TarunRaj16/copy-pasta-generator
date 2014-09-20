@@ -42,8 +42,7 @@ websocket.onerror = function(evt) { onError(evt) };
 }  
  
  function onOpen(evt) { 
-alert("CONNECTED"); 
- sendToServer("WebSocket rocks"); } 
+ alert("CONNECTED"); } 
 
  function onClose(evt) { 
  alert("DISCONNECTED"); }  
