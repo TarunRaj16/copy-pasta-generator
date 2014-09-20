@@ -2,7 +2,7 @@
 import nltk
 from nltk.corpus import brown
 
-class keyword():
+class Theme():
     def __init__(self, themes):
         """Initialize theme class"""
         self._sim_words1 = self._corpus.similar_words(themes[0], 100)
