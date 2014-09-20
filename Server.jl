@@ -12,7 +12,8 @@ while true
         try
             while true
                 line = readline(conn)
-                write(conn, CopyPasta.generate_copy_pasta(line))
+                write(conn, join([CopyPasta.generate_copy_pasta(line), "\n"]))
+                println("Written.")
             end
         catch err
             print("connection ended with error $err")
