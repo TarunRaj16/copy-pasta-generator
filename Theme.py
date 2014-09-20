@@ -32,6 +32,9 @@ class Theme():
             for ii in [round(jj * (-0.5 if jj%2 == 0 else 0.5)) for jj in range(0,fuzziness * 2) ]:
                 if find_pos(similar_word_list[distance + ii]) == replacee_pos:
                     return similar_word_list[distance + ii]
+
+    def replace(self, new_theme, to_replace, pos):
+        return new_theme.access(self.distance(to_replace), 25, new_theme, to_replace, pos)
                 
 
 ##def main():
