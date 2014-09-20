@@ -17,17 +17,23 @@ class Parser:
         """Replace the indices of the tokenized text"""
         text_tokens = PunktWordTokenizer().tokenize(text)
         pos_tags = nltk.pos_tag(text_tokens)
+        print(len(pos_tags))
+        print(len(text_tokens))
 
         # result = [token.replace(filter(str.isalnum, token), )]
+
         
         for index in indices:
-            text_tokens[index] = text_tokens[index].replace(filter(str.isalnum, text_tokens[index]),
-                                                            self._old_theme.replace(self._new_theme,
-                                                                                    filter(str.isalnum,
-                                                                                           text_tokens[index]),
-                                                                                    pos_tags[index][1]),
-                                                            )
-
+            try:
+                text_tokens[index] = text_tokens[index].replace(filter(str.isalnum, text_tokens[index]),
+                                                                self._old_theme.replace(self._new_theme,
+                                                                                        filter(str.isalnum,
+                                                                                               text_tokens[index]),
+                                                                                        pos_tags[index][1]),
+                                                                )
+        except IndexError:
+            continue
+            
         return " ".join(text_tokens)
 
     
