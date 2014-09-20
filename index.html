@@ -29,7 +29,7 @@ function sendToServer(inputThemePar) {
      ws.onopen = function()
      {
         // Web Socket is connected, send data using send()
-        ws.send(inputTheme);
+        ws.send(inputThemePar);
         alert("Message is sent...");
      };
      ws.onmessage = function (evt) 
@@ -51,9 +51,4 @@ function sendToServer(inputThemePar) {
 
 }
 </script>
-
-
-
-
-
 </html>
