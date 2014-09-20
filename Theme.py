@@ -27,14 +27,22 @@ class Theme():
     
     def access(self, distance, fuzziness, new_theme, replacee, replacee_pos):
         """Fuzzily access the word at a certain distance away"""
+        if distance == -1:
+            print("No distance found.")
+            return("frozen")
         
-        for similar_word_list in new_theme.similar_word_lists:
-            for ii in [round(jj * (-0.5 if jj%2 == 0 else 0.5)) for jj in range(0,fuzziness * 2) ]:
-                if find_pos(similar_word_list[distance + ii]) == replacee_pos:
+        for similar_word_list in new_theme._similar_word_lists:
+            for ii in [int(round(jj * (-0.5 if jj%2 == 0 else 0.5))) for jj in range(0,fuzziness * 2) ]:
+                if distance + ii < 0 or distance + ii > len(similar_word_list):
+                    continue
+                if self.find_pos(similar_word_list[distance + ii]) == replacee_pos:
                     return similar_word_list[distance + ii]
 
+        return("not found")
+
     def replace(self, new_theme, to_replace, pos):
-        return new_theme.access(self.distance(to_replace), 25, new_theme, to_replace, pos)
+        print("Replacing {0} which is a {1}".format(to_replace, pos))
+        return new_theme.access(self.distance(to_replace), 50, new_theme, to_replace, pos)
                 
 
 ##def main():

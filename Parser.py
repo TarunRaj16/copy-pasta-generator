@@ -7,8 +7,11 @@ import Theme
 class Parser:
     def __init__(self, corpus, old_theme_words, new_theme_words):
         """Initialize parser"""
-        self._old_theme = Theme.Theme(Text(word.lower() for word in corpus.words()), old_theme_words)
-        self._new_theme = Theme.Theme(Text(word.lower() for word in corpus.words()), new_theme_words)
+        print("Initializing themes.")
+        textified_corpus = Text(word.lower() for word in corpus.words())
+        print("Finished textifying corpus.")
+        self._old_theme = Theme.Theme(textified_corpus, old_theme_words)
+        self._new_theme = Theme.Theme(textified_corpus, new_theme_words)
         
     def replace_indices(self, indices, text):
         """Replace the indices of the tokenized text"""
@@ -22,7 +25,7 @@ class Parser:
                                                             self._old_theme.replace(self._new_theme,
                                                                                     filter(str.isalnum,
                                                                                            text_tokens[index]),
-                                                                                    pos_tags[ii][1]),
+                                                                                    pos_tags[index][1]),
                                                             )
 
         return " ".join(text_tokens)
