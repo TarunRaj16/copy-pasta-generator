@@ -3,19 +3,34 @@ import nltk
 from nltk.corpus import brown
 
 class keyword():
-    def __init__(self, pos, text, target):
-        """Initialize keyword class"""
-        self._corpus = nltk.text.ContextIndex(text.tokens)
-        self._pos = pos
-        self._target = target
-        self._sim_words = self._corpus.similar_words(self._target, 100)
-        self._sim_dict = self._corpus.word_similarity_dict(self._target)
+    def __init__(self, themes):
+        """Initialize theme class"""
+        self._sim_words1 = self._corpus.similar_words(themes[0], 100)
+        self._sim_words2 = self._corpus.similar_words(themes[1], 100)
+        self._sim_words3 = self._corpus.similar_words(themes[2], 100)
     def word_rank(self, num):
-        print(self._sim_words[num])
-    def get_pos():
-        return self._pos
-        
-
+        return self._sim_words[num]
+    def distance(self, replacee):
+        if replacee in self._sim_words1:
+            return self._sim_words1.index(replacee)
+        elif replacee in self._sim_words2:
+            return self._sim_words2.index(replacee)
+        elif replacee in self._sim_words3:
+            return self._sim_words3.index(replacee)
+        else:
+            return -1
+    def access(self, num, replacee)
+        pos_type = replacee.get_pos                 """will look into later"""
+        if self._sim_words1[num].is_correct_pos:     """will look into later"""
+            return self._sim_words1[num]
+        for i in range(num, num+20):
+            if self._sim_words1[i].is_correct_pos:
+                return self._sim_words1[i]
+        for i in range(num-20, num-1):
+            if self._sim_words1[i].is_correct_pos:
+                return self._sim_words1[i]
+            
+"""
 def main():
     textG = nltk.Text(word.lower() for word in nltk.corpus.brown.words())
     pi = keyword(None, textG, "kill")
@@ -23,4 +38,4 @@ def main():
 
 if __name__=="__main__":
     main()
-    
+"""   
