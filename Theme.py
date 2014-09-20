@@ -6,8 +6,8 @@ class Theme():
     def __init__(self, text, descriptors):
         """Initialize theme class"""
         self._corpus = nltk.text.ContextIndex(text.tokens)
-        self._similar_word_lists = [ self._corpus.similar_words(themes, -1) for descriptor in descriptors ]
-
+        self._similar_word_lists = [ self._corpus.similar_words(descriptor, -1) for descriptor in descriptors ]
+        
     def word_rank(self, num):
         return self._sim_words[num]
     
@@ -24,7 +24,7 @@ class Theme():
     def find_pos(self, replacee):
         return "NN"
     
-    def access(self, distance, fuzziness, new_theme, replacee, replacee_pos)
+    def access(self, distance, fuzziness, new_theme, replacee, replacee_pos):
         """Fuzzily access the word at a certain distance away"""
         
         for similar_word_list in new_theme.similar_word_lists:
@@ -32,12 +32,16 @@ class Theme():
                 if find_pos(similar_word_list[distance + ii]) == replacee_pos:
                     return similar_word_list[distance + ii]
                 
-"""
+
 def main():
     textG = nltk.Text(word.lower() for word in nltk.corpus.brown.words())
-    pi = keyword(None, textG, "kill")
-    pi.word_rank(5)
+    stuff = ["door"]
+    pi = Theme(textG, stuff)
+    for list1 in pi._similar_word_lists:
+        for word in list1:
+            print(word)
 
 if __name__=="__main__":
     main()
-"""   
+   
+
