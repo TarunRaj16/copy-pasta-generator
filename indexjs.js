@@ -1,32 +1,8 @@
-
-
-function send(){
-
 	 
-	 var oldThemeUnsplit = document.getElementById("oldThemes").value;
-	 var oldThemeArray = oldThemeUnsplit.split(" ");
-	 
-	 var newThemeUnsplit = document.getElementById("newThemes").value;
-	 var newThemeArray = newThemeUnsplit.split(" ");
-	 
-	 document.getElementById("oldThemes").style.backgroundColor='green';
-	 document.getElementById("newThemes").style.backgroundColor='green';
-
-	 var togetherArray = [oldThemeArray,newThemeArray];
-	 var jsonstring = JSON.stringify(togetherArray);
-	 alert("JSON STRING: " + jsonstring);
-	 sendToServer(jsonstring);
-	 
-	 
-	 }
-	 
-
-var wsUri = "ws://localhost:3001/"; 
-var output;  
+var ws = new WebSocket(ws://localhost:3001/); 
 
 function init() { 
 
-	ws = new WebSocket(ws://localhost:3001/); 
 
 	if("WebSocket" in window) {
             ws.onopen = function (event) {
@@ -55,6 +31,27 @@ function init() {
  
  }  
  
+
+
+function send(){
+
+	 
+	 var oldThemeUnsplit = document.getElementById("oldThemes").value;
+	 var oldThemeArray = oldThemeUnsplit.split(" ");
+	 
+	 var newThemeUnsplit = document.getElementById("newThemes").value;
+	 var newThemeArray = newThemeUnsplit.split(" ");
+	 
+	 document.getElementById("oldThemes").style.backgroundColor='green';
+	 document.getElementById("newThemes").style.backgroundColor='green';
+
+	 var togetherArray = [oldThemeArray,newThemeArray];
+	 var jsonstring = JSON.stringify(togetherArray);
+	 alert("JSON STRING: " + jsonstring);
+	 sendToServer(jsonstring);
+	 
+	 
+	 }
 
 
 	 
