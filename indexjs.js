@@ -1,5 +1,6 @@
 	 
-var ws = new WebSocket("ws://localhost:3001/"); 
+var ws = new WebSocket("ws://localhost:3001/");
+
 
 function init(){ 
 
@@ -10,7 +11,12 @@ function init(){
             }
 
             ws.onmessage = function (message) {
-                onMessage(message);    
+                onMessage(message);
+		console.log(message.data);
+		var myTarget = document.getElementById("text_div")
+		myTarget.innerHTML = message.data;
+		var textBox = document.getElementById('text_box');
+		textBox.value = message.data
             }
         }
  
