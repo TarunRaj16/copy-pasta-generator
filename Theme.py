@@ -3,8 +3,9 @@ import nltk
 from nltk.corpus import brown
 
 class Theme():
-    def __init__(self, descriptors):
+    def __init__(self, text, descriptors):
         """Initialize theme class"""
+        self._corpus = nltk.text.ContextIndex(text.tokens)
         self._similar_word_lists = [ self._corpus.similar_words(themes, -1) for descriptor in descriptors ]
 
     def word_rank(self, num):
