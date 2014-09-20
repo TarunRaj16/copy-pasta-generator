@@ -26,7 +26,7 @@ function sendToServer(arrayPar) {
   {
      alert("WebSocket is supported by your Browser!");
      // Let us open a web socket
-     var ws = new WebSocket("ws://localhost:3001/echo");
+     var ws = new WebSocket("ws://localhost:3001/");
      ws.onopen = function()
      {
         // Web Socket is connected, send data using send()
