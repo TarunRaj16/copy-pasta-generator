@@ -3,22 +3,22 @@ import nltk
 from nltk.corpus import brown
 
 class Theme():
-    def __init__(self, themes):
+    def __init__(self, descriptors):
         """Initialize theme class"""
-        self._sim_words1 = self._corpus.similar_words(themes[0], 100)
-        self._sim_words2 = self._corpus.similar_words(themes[1], 100)
-        self._sim_words3 = self._corpus.similar_words(themes[2], 100)
+        self._similar_word_lists = [ self._corpus.similar_words(themes, -1) for descriptor in descriptors ]
+
     def word_rank(self, num):
         return self._sim_words[num]
     def distance(self, replacee):
-        if replacee in self._sim_words1:
-            return self._sim_words1.index(replacee)
-        elif replacee in self._sim_words2:
-            return self._sim_words2.index(replacee)
-        elif replacee in self._sim_words3:
-            return self._sim_words3.index(replacee)
-        else:
-            return -1
+        """Calculate the distance between a word and the theme"""
+        for similar_word_list in self.similar_word_lists:
+            try:
+                return similar_word_list.index(replacee)
+            except:
+                continue
+            
+        return -1
+    
     def access(self, num, replacee)
         pos_type = replacee.get_pos                 """will look into later"""
         if self._sim_words1[num].is_correct_pos:     """will look into later"""
