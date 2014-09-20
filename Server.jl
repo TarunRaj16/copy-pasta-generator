@@ -4,14 +4,20 @@ using PyCall
 unshift!(PyVector(pyimport("sys")["path"]), "")
 @pyimport CopyPasta
 
-function main()
+server = listen(3001)
+while true
+    print("Listening...")
+    conn = accept(server)
     @async begin
-        server = listen(3001)
-        while true
-            sock = accept(server)
-            @async while true
-                write(sock, CopyPasta.generate_copy_pasta(readline(sock)))
+        try
+            while true
+                line = readline(conn)
+                write(conn, CopyPasta.generate_copy_pasta(line))
             end
+        catch err
+            print("connection ended with error $err")
         end
     end
 end
+
+## main()
