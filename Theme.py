@@ -22,7 +22,8 @@ class Theme():
         return -1
 
     def find_pos(self, replacee):
-        return "NN"
+        listOne = [replacee]
+        return nltk.pos_tag(listOne)[0][1]
     
     def access(self, distance, fuzziness, new_theme, replacee, replacee_pos):
         """Fuzzily access the word at a certain distance away"""
@@ -33,15 +34,17 @@ class Theme():
                     return similar_word_list[distance + ii]
                 
 
-def main():
-    textG = nltk.Text(word.lower() for word in nltk.corpus.brown.words())
-    stuff = ["door"]
-    pi = Theme(textG, stuff)
-    for list1 in pi._similar_word_lists:
-        for word in list1:
-            print(word)
-
-if __name__=="__main__":
-    main()
+##def main():
+##    textG = nltk.Text(word.lower() for word in nltk.corpus.brown.words())
+##    stuff = ["door"]
+##    pi = Theme(textG, stuff)
+##    
+##    print(nltk.pos_tag(stuff)[0][1])
+##    for list1 in pi._similar_word_lists:
+##        for word in list1:
+##            print(word)
+##
+##if __name__=="__main__":
+##    main()
    
 
