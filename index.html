@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Copy Pasta Generator </title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
 <script src="indexjs.js" type='text/javascript'></script>
 <link rel="stylesheet" type="text/css" href="cpstyle.css" />
 <link rel="icon" href="assets/icon.png" />
@@ -16,13 +17,10 @@
 <input type="text"  value="Enter Old Themes" onfocus="if (this.value=='Enter Old Themes') this.value='';" id="oldThemes"/> 
 
 <input type="text"  value="Enter New Themes" onfocus="if (this.value=='Enter New Themes') this.value='';" id="newThemes"/> 
-
-<br>
-<br>
+<div class="buttondiv">
 <input type="Button" class="pure-button pure-button-primary" value="Submit" onClick='send()'/>
-
-<br>
-<br>
+</div>
+<span class="loader" id="fancyloader"><span class="loader-inner"></span></span>
 
 <div id="text_div" class="box">&nbsp;</div>
 
