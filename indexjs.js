@@ -1,5 +1,5 @@
 	 
-var ws = new WebSocket("ws://localhost:3001/");
+var ws = new WebSocket("ws://csec.tfliu.com:3001/");
 
 
 function init(){ 
