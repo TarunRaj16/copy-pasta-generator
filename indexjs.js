@@ -4,6 +4,7 @@ var ws = new WebSocket("ws://csec.tfliu.com:3001/");
 function init(){ 
 
     $(".loader").hide();
+    $(".bubblingG").hide();
     if("WebSocket" in window) {
         ws.onopen = function (event) {
 	    onOpen(event);
@@ -17,7 +18,7 @@ function init(){
 	    var textBox = document.getElementById('text_box');
 	    textBox.value = message.data;
 	    var loading_box = document.getElementById("fancyloader");
-	    $(".loader").hide();
+	    $(".bubblingG").hide();
         }
     }
     
@@ -30,6 +31,7 @@ function onOpen(evt) {
 function onMessage(evt) { 
     // alert("Receiving Message");
     $(".loader").hide();
+    $(".bubblingG").hide();
 }  
 
 function sendToServer(message) { 
@@ -44,6 +46,7 @@ function sendToServer(message) {
 function send(){
     var loading_box = document.getElementById("fancyloader");
     $(".loader").show();
+    $(".bubblingG").show();
     var oldThemeUnsplit = document.getElementById("oldThemes").value;
     var oldThemeArray = oldThemeUnsplit.split(" ");
     
